@@ -35,4 +35,4 @@ def print_sudoku(board: list[list]) -> None:
 
 
 if __name__ == "__main__":
-    print_sudoku(main(pathlib.Path("/img.png")))
+    print_sudoku(main(pathlib.Path("./img.png")))

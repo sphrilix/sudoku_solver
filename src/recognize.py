@@ -71,7 +71,7 @@ def _do_numbers_back(numbers: str, indexes: list) -> list[list[str]]:
             if 9 * x + y in indexes:
                 sudoku[x].append(numbers[indexes.index(9 * x + y)])
             else:
-                sudoku[x].append("..")
+                sudoku[x].append(".")
     return sudoku
 
 
