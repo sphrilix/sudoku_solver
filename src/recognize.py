@@ -53,7 +53,7 @@ def _concat_numbers(images: list[np.ndarray]) -> (np.ndarray, list):
     return cv2.hconcat(concat), indexes
 
 
-def _do_numbers_back(numbers: str, indexes: list) -> list[list[str]]:
+def _do_numbers_back(numbers: str, indexes: list) -> list[list[int]]:
     """
     Merge back recognized numbers to their indexes.
     :param numbers: Recognized numbers as a string.
@@ -65,17 +65,16 @@ def _do_numbers_back(numbers: str, indexes: list) -> list[list[str]]:
 
     # Remove everything which is not a number.
     numbers = re.sub(r"\D", "", numbers)
-    print(numbers)
     for x in range(9):
         for y in range(9):
             if 9 * x + y in indexes:
-                sudoku[x].append(numbers[indexes.index(9 * x + y)])
+                sudoku[x].append(int(numbers[indexes.index(9 * x + y)]))
             else:
-                sudoku[x].append(".")
+                sudoku[x].append(0)
     return sudoku
 
 
-def recognize_sudoku(images: list[np.ndarray]) -> list[list[str]]:
+def recognize_sudoku(images: list[np.ndarray]) -> list[list[int]]:
     """
     Recognize a list of images of cell in a sudoku.
     :param images: List of the cells of an image from sudoku.

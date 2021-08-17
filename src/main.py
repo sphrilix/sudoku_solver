@@ -1,11 +1,11 @@
 import cv2
-import numpy as np
 import pathlib
 from preprocess import pre_process_image
 from recognize import recognize_sudoku
+from solve import solve
 
 
-def main(img_path: pathlib.Path) -> list[list[str]]:
+def main(img_path: pathlib.Path):
     """
     Main function for recognizing a sudoku image. Just give the path of an image of a sudoku and it will return a 2-dim.
     which represents a sudoku.
@@ -14,10 +14,11 @@ def main(img_path: pathlib.Path) -> list[list[str]]:
     """
 
     img = cv2.imread(str(img_path), 0)
-    return recognize_sudoku(pre_process_image(img))
+    print_sudoku(solve(recognize_sudoku(pre_process_image(img))))
 
 
-def print_sudoku(board: list[list]) -> None:
+
+def print_sudoku(board: list[list[int]]) -> None:
     """
     Just a print function for debugging.
     :param board: Takes a 2-dim. list which represents a sudoku.
@@ -25,7 +26,7 @@ def print_sudoku(board: list[list]) -> None:
 
     print("-" * 37)
     for i, row in enumerate(board):
-        print(("|" + " {}   {}   {} |" * 3).format(*[x if x != 0 else " " for x in row]))
+        print(("|" + " {}   {}   {} |" * 3).format(*[x if x > 0 else " " for x in row]))
         if i == 8:
             print("-" * 37)
         elif i % 3 == 2:
@@ -35,4 +36,4 @@ def print_sudoku(board: list[list]) -> None:
 
 
 if __name__ == "__main__":
-    print_sudoku(main(pathlib.Path("./img.png")))
+    main(pathlib.Path("./img.png"))
