@@ -17,7 +17,6 @@ def main(img_path: pathlib.Path):
     print_sudoku(solve(recognize_sudoku(pre_process_image(img))))
 
 
-
 def print_sudoku(board: list[list[int]]) -> None:
     """
     Just a print function for debugging.

@@ -1,4 +1,12 @@
 def _is_valid_move(sudoku: list[list[int]], pos: (int, int), num: int) -> bool:
+    """
+    Private function to validating whether a move is valid or not.
+    :param sudoku: Current sudoku on which the move is performed
+    :param pos: x and y position of the desired move.
+    :param num: Number which used in the move
+    :return: Returns True if the move is valid according to sudoku rules
+    """
+
     for i in range(9):
         if sudoku[pos[0]][i] == num and pos[1] != i:
             return False
@@ -19,6 +27,12 @@ def _is_valid_move(sudoku: list[list[int]], pos: (int, int), num: int) -> bool:
 
 
 def _first_empty(sudoku: list[list[int]]) -> (int, int):
+    """
+    Private function for detecting the first empty slot in a given Sudoku.
+    :param sudoku: Sudoku in which the first empty slot should be found.
+    :return: Returns the x and y position of the first empty slot
+    """
+
     for i in range(9):
         for j in range(9):
             if sudoku[i][j] == 0:
@@ -27,6 +41,12 @@ def _first_empty(sudoku: list[list[int]]) -> (int, int):
 
 
 def _solve_rec(sudoku: list[list[int]]) -> bool:
+    """
+    Helper function to solve the sudoku recursively using backpropagation.
+    :param sudoku: The sudoku which should be solved
+    :return: Returns true if the sudoku is solved.
+    """
+
     empty_indices = _first_empty(sudoku)
     if not empty_indices:
         return True
@@ -41,5 +61,11 @@ def _solve_rec(sudoku: list[list[int]]) -> bool:
 
 
 def solve(sudoku: list[list[int]]) -> list[list[int]]:
+    """
+    Solve a given sudoku.
+    :param sudoku: The sudoku to be solved.
+    :return: Returns the solved Sudoku.
+    """
+
     _solve_rec(sudoku)
     return sudoku
