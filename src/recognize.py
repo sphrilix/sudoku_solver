@@ -8,7 +8,7 @@ import re
 """
 The API key from https://ocr.space
 """
-API_KEY: str = "76131a2e0588957"
+API_KEY: str = ""
 
 """
 Integer which indicates which engine to be used.

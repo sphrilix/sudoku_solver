@@ -1,3 +1,5 @@
+import sys
+
 import cv2
 import pathlib
 from preprocess import pre_process_image
@@ -35,4 +37,4 @@ def print_sudoku(board: list[list[int]]) -> None:
 
 
 if __name__ == "__main__":
-    main(pathlib.Path("./img.png"))
+    main(pathlib.Path(sys.argv[1]))
